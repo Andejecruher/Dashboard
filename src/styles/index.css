@@ -6,8 +6,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,6 +17,7 @@
 @theme {
   /* Font */
   --font-body: "Inter", system-ui, "Avenir", Helvetica, Arial, sans-serif;
+  --font-color: #000;
 
   /* Color navy */
   --color-navy-50: #f0f8ff;
@@ -93,7 +93,7 @@
   --color-grey-10: #f6fafd;
   --color-grey-50: #f6f7f9;
   --color-grey-100: #eceff2;
-  --color-grey-200: #d5dbe2;
+  --color-grey-200: rgba(238, 246, 251, 0.9);
   --color-grey-300: #b1bdc8;
   --color-grey-400: #8699aa;
   --color-grey-500: #677c90;
