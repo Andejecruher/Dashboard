@@ -8,10 +8,10 @@ import Button from "@/components/ui/Button"
 const classes = {
     button: `group h-10 w-10 shadow-sm rounded-full hover:bg-blue-500 hover:text-white transition-colors duration-200`,
     icon: `h-5 w-5 text-gray-500 group-hover:text-white transition-colors duration-200`,
-    searchContainer: `flex items-center rounded-full overflow-hidden shadow-md`,
+    searchContainer: `flex items-center rounded-full overflow-hidden shadow-md bg-white`,
     iconSearch: `h-5 w-5 text-gray-500 group-hover:text-blue-500 transition-colors duration-200`,
-    buttonSearch: `group h-10 w-10 rounded-full hover:text-white transition-colors duration-200 border-transparent`,
-    input: `w-[100px] h-[40px] p-0 mr-1 ml-1 rounded-full border-transparent border-0`
+    buttonSearch: `group h-10 w-10 rounded-full hover:text-white transition-colors duration-200 border-transparent hover:bg-transparent`,
+    input: `flex-1 h-[40px] p-0 mr-1 ml-1 rounded-full border-transparent border-0 bg-white`
 }
 
 export default function Search() {
@@ -45,7 +45,7 @@ export default function Search() {
                 ) : (
                     <motion.div
                         initial={{ width: 40, opacity: 0, scale: 0.8 }}
-                        animate={{ width: "auto", opacity: 1, scale: 1 }}
+                        animate={{ width: "100%", opacity: 1, scale: 1 }}
                         exit={{ width: 40, opacity: 0, scale: 0.8 }}
                         transition={{
                             duration: 0.3,

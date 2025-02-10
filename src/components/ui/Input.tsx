@@ -57,7 +57,7 @@ const classes = {
     label: "block mb-2 font-['Inter'] text-[16px] font-bold leading-[30px] text-white",
     inputWrapper: (error: string, success: boolean) => `
     flex items-center w-full h-[50px] px-5 py-2.5 gap-3
-    bg-[#f6fafd] rounded-[8px]
+    bg-white rounded-[8px]
     ${error ? "border-red-500" : success ? "border-green-500" : "border-[#eaeef4]"}
   `,
     input: "grow h-full bg-transparent border-none font-['Inter'] text-[16px] text-[#092c4c] placeholder-[#7e92a2] focus:outline-none",
