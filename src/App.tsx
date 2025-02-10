@@ -1,9 +1,11 @@
-// import Component from "@/pages/component-showcase";
-import DashboardPage from "@/components/layouts/Sidebard"
+import {
+  RouterProvider,
+} from "react-router";
+import router from "@/routes/routes"
 
 function App() {
   return (
-    <DashboardPage />
+    <RouterProvider router={router} />
   )
 }
 
