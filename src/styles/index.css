@@ -104,3 +104,13 @@
   --color-grey-950: #22282f;
   --color-grey: #f6fafd;
 }
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-grey-10);
+}
