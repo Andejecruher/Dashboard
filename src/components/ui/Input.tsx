@@ -54,7 +54,7 @@ const iconMapping = {
 // styles
 const classes = {
     container: "w-full max-w-[384px] rounded-[5px] relative mx-auto my-0",
-    label: "block mb-2 font-['Inter'] text-[16px] font-bold leading-[30px] text-white",
+    label: "block mb-2 font-['Inter'] text-[16px] font-bold leading-[30px]",
     inputWrapper: (error: string, success: boolean) => `
     flex items-center w-full h-[50px] px-5 py-2.5 gap-3
     bg-white rounded-[8px]

@@ -15,7 +15,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 // style
 const buttonStyles = cva(
-    "inline-flex items-center justify-center border text-sm font-medium",
+    "inline-flex items-center justify-center border text-sm",
     {
         variants: {
             intent: {
@@ -28,7 +28,7 @@ const buttonStyles = cva(
                 ghost: "text-[#6C5DD3] hover:bg-[#F8F9FE] hover:text-[#6C5DD3]",
                 link: "text-primary underline-offset-4 hover:underline",
                 primary: "bg-indigo-600 text-white hover:bg-indigo-700",
-                secondary: "bg-gray-300 text-gray-700 hover:bg-gray-400",
+                secondary: "bg-gray-300 text-gray-700 hover:bg-gray-300",
                 danger: "bg-red-600 text-white hover:bg-red-700",
             },
             size: {
@@ -78,7 +78,7 @@ const Button: React.FC<ButtonProps> = React.forwardRef<HTMLButtonElement, Button
                     <>
                         {icon && iconPosition === "center" && <span className="m-auto">{icon}</span>}
                         {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
-                        <span>{text}</span>
+                        <span className="inherit">{text}</span>
                         {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
                     </>
                 )}
