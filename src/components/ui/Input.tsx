@@ -16,13 +16,14 @@ import {
     ChevronDown,
     Eye,
     EyeOff,
+    ArrowBigLeftDash
 } from "lucide-react"
 
 // interface props
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick"> {
     label?: string
     icon?: "search" | "mail" | "lock" | "user" | "calendar" | "phone" | "dollar" | "percent" | "hash"
-    rightIcon?: "chevron-down" | "check" | "alert" | "eye" | "eye-off"
+    rightIcon?: "chevron-down" | "check" | "alert" | "eye" | "eye-off" | "arrow-left"
     error?: string
     success?: boolean
     validate?: (value: string) => string | null
@@ -50,11 +51,12 @@ const iconMapping = {
     alert: AlertCircle,
     eye: Eye,
     "eye-off": EyeOff,
+    "arrow-left": ArrowBigLeftDash
 };
 
 // styles
 const classes = {
-    container: "w-full max-w-[384px] rounded-[5px] relative mx-auto my-0",
+    container: "w-full max-w-full rounded-md relative mx-auto my-0",
     label: "block mb-2 font-['Inter'] text-[16px] font-bold leading-[30px]",
     inputWrapper: (error: string, success: boolean) => `
     flex items-center w-full h-[50px] px-5 py-2.5 gap-3

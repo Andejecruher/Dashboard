@@ -13,12 +13,12 @@ interface TaskProps {
 
 // styles
 const classes = {
-    container: `w-full max-w-[368px] h-[51px] relative overflow-hidden mx-auto my-0 bg-white shadow-sm rounded-md border border-gray-200 hover:bg-gray-50 transition-colors duration-200 cursor-pointer`,
+    container: `w-full max-w-full h-12 rounded-xl relative overflow-hidden  bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer pt-3 pb-3`,
     content: `absolute top-1/2 left-6 transform -translate-y-1/2 flex items-center space-x-2`,
     label: (isHighlighted: boolean) => `w-4 h-4 ${isHighlighted ? "text-red-500" : "text-gray-400"}`,
-    date: (isHighlighted: boolean) => `font-['Inter'] text-sm leading-5 ${isHighlighted ? "text-red-500 font-medium" : "text-gray-500"}`,
+    date: (isHighlighted: boolean) => `text-sm leading-5 ${isHighlighted ? "text-red-500 font-medium" : "text-gray-500"}`,
     footer: `absolute top-1/2 left-[144px] right-6 transform -translate-y-1/2`,
-    footerTitle: `font-['Inter'] text-sm font-normal leading-5 text-gray-900 truncate`
+    footerTitle: `text-sm font-normal leading-5 text-gray-900 truncate`
 }
 
 //components

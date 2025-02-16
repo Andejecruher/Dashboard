@@ -1,10 +1,13 @@
+// Desc: Dashboard page
 import Costumers from "@/components/Costumers"
 import NextAppointment from "@/components/NextAppointment"
 import RecentDeals from "@/components/RecentDeals"
 import KpiCard from "@/components/KpiCard"
 import DealInProgress from "@/components/DealInProgress"
+import TaskToDo from "@/components/TaskToDo"
 import { User, BriefcaseBusiness } from "lucide-react"
 
+// recent deals example
 const recentDeals = [
     {
         address: "319 Haul Road",
@@ -40,6 +43,7 @@ const recentDeals = [
     }
 ]
 
+// deal example
 const deal = {
     address: "1538 Hammer Road",
     price: 5750,
@@ -59,6 +63,7 @@ const deal = {
     ]
 }
 
+// costumer example
 const costumers = [
     {
         firstName: "John",
@@ -86,6 +91,7 @@ const costumers = [
     }
 ]
 
+// style
 const classes = {
     section: `p-4`,
     container: `grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 justify-center mb-4`,
@@ -93,6 +99,7 @@ const classes = {
     iconsKpis: `text-white w-10 h-10`
 }
 
+// page component
 const Dashboard: React.FC = () => {
     return (
         <section className={classes.section}>
@@ -124,11 +131,12 @@ const Dashboard: React.FC = () => {
                     />
                 </div>
                 <div>
-
+                    <TaskToDo />
                 </div>
             </div>
         </section>
     )
 }
 
+// export
 export default Dashboard
