@@ -1,4 +1,5 @@
-export function SquareMeterIcon() {
+// component
+const SquareMeterIcon: React.FC = () => {
     return (
         <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -13,3 +14,5 @@ export function SquareMeterIcon() {
     )
 }
 
+// export
+export default SquareMeterIcon

@@ -1,3 +1,4 @@
+// Desc: This file contains the Sidebar layout component
 import React from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import Button from "@/components/ui/Button"
@@ -7,12 +8,13 @@ import AddNew from "@/components/ui/AddNew"
 import { CalendarDays, Users, Briefcase, LayoutGrid, ListChecks, Settings, BellDot } from "lucide-react"
 import Logo from "@/assets/Logo.svg"
 
+// styles
 const classes = {
     container: `flex min-h-screen bg-grey`,
     sidebar: `hidden w-[103px] flex-col items-center border-r border-1 border-grey-100 bg-grey pb-4 pr-4 pl-4 md:flex`,
     logoContainer: `w-[103px] h-[103px] border-b border-grey-100 items-center flex justify-center`,
     logo: `w-[46px] w-[46px]`,
-    button: `group h-[50px] w-[50px] rounded-[50px] hover:bg-blue-500 hover:text-white border border-1 border-grey-100 bg-white`,
+    button: `group h-[50px] w-[50px] rounded-[50px] hover:bg-blue-500 hover:text-white border border-1 border-grey-100 bg-white cursor-pointer`,
     icon: `h-5 w-5 text-gray-500 group-hover:text-white transition-colors`,
     nav: `flex flex-1 flex-col gap-4 mt-4`,
     mainContent: `flex-1 bg-grey-10`,
@@ -23,6 +25,7 @@ const classes = {
     addNew: `rounded-4xl`,
 }
 
+// sidebar Component
 const Sidebard: React.FC = () => {
     const navigate = useNavigate()
     const handleNavigate = (page: string) => {
@@ -72,4 +75,5 @@ const Sidebard: React.FC = () => {
     )
 }
 
+// export
 export default Sidebard

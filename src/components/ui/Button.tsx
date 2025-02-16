@@ -1,3 +1,4 @@
+// Desc: Button component
 import React from "react"
 import { cva } from "class-variance-authority"
 
@@ -87,7 +88,7 @@ const Button: React.FC<ButtonProps> = React.forwardRef<HTMLButtonElement, Button
     },
 )
 
+// export
 Button.displayName = "Button"
-
 export default Button
 

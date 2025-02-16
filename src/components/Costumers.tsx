@@ -1,12 +1,15 @@
+// Desc: Costumer component
 import React from "react";
 import UserCard, { UserCardProps } from "./ui/UserCard";
 import Button from "./ui/Button";
 import { Pencil } from "lucide-react";
 
+// interface props
 interface CostumersProps {
     costumers: UserCardProps[]
 }
 
+// styles
 const classes = {
     container: `bg-white rounded-xl border border-grey-100 p-6`,
     header: `flex items-center justify-between`,
@@ -15,7 +18,7 @@ const classes = {
     content: `flex flex-col`
 }
 
-
+// component
 const Costumers: React.FC<CostumersProps> = ({ costumers }) => {
     return (
         <section className={classes.container}>
@@ -40,4 +43,5 @@ const Costumers: React.FC<CostumersProps> = ({ costumers }) => {
     );
 };
 
+// export
 export default Costumers;

@@ -1,17 +1,21 @@
+// Desc: Timeline component
 import type React from "react"
 import { DotIcon } from "lucide-react"
 
+// interface
 interface TimelineItem {
     dateTime: string
     comment: string
     description?: string
 }
 
+// interface props
 interface TimelineProps {
     items: TimelineItem[]
     intercalate?: boolean
 }
 
+// styles
 const classes = {
     container: `w-full h-full p-4`,
     content: `relative wrap overflow-hidden pl-6 pr-6 h-full`,
@@ -26,6 +30,7 @@ const classes = {
 
 }
 
+// component
 const Timeline: React.FC<TimelineProps> = ({ items, intercalate }) => {
     return (
         <div className={classes.container}>
@@ -53,5 +58,6 @@ const Timeline: React.FC<TimelineProps> = ({ items, intercalate }) => {
     )
 }
 
+// export
 export default Timeline
 

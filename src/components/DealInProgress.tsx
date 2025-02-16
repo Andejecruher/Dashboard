@@ -1,14 +1,16 @@
-import { button, footer } from "motion/react-client"
+// Desc: DealInProgress component
 import Badge from "./ui/Badge"
 import Button from "./ui/Button"
 import Timeline from "./ui/TimeLine"
 import { ArrowRight } from "lucide-react"
 
+// interface comment
 export interface Comment {
     dateTime: string
     comment: string
 }
 
+// interface props
 export interface DealsProps {
     imageUrl: string
     address: string
@@ -19,6 +21,7 @@ export interface DealsProps {
     comments?: Comment[]
 }
 
+// styles
 const classes = {
     container: `w-full py-2 flex flex-col overflow-hidden bg-white rounded-xl border border-grey-100`,
     header: `flex items-center justify-between w-full border-b border-grey-100 p-6`,
@@ -29,12 +32,13 @@ const classes = {
     address: `text-navy text-base font-bold leading-7`,
     city: `text-right text-grey-600 text-sm font-normal leading-7`,
     action: `flex items-center justify-end gap-4`,
-    buttonAction: `border-0 rounded-xl`,
+    buttonAction: `border-0 rounded-xl cursor-pointer`,
     footerAction: `flex items-center justify-center`,
-    buttonFooterAction: `border-none rounded-full font-extrabold`,
+    buttonFooterAction: `border-none rounded-full font-extrabold cursor-pointer`,
 }
 
-export default function DealInProgres({ imageUrl, address, city, state, onGoToDeal, onLoadMore, comments }: DealsProps) {
+// component
+const DealInProgres: React.FC<DealsProps> = ({ imageUrl, address, city, state, onGoToDeal, onLoadMore, comments }) => {
     return (
         <section className={classes.container}>
             <div className={classes.header}>
@@ -66,3 +70,6 @@ export default function DealInProgres({ imageUrl, address, city, state, onGoToDe
         </section>
     )
 }
+
+// export
+export default DealInProgres

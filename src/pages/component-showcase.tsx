@@ -1,3 +1,4 @@
+// Desc: ComponentShowcase page
 import type React from "react"
 import { useState } from "react"
 import Badge from "@/components/ui/Badge"
@@ -7,9 +8,9 @@ import UserCard from "@/components/ui/UserCard"
 import ScreenColumnsBackground from "@/components/ui/ScreenColumnsBackground"
 import Input from "@/components/ui/Input"
 import Deal from "@/components/ui/Deal"
-
 import { ArrowRight, UserPlus, Settings, Pencil } from "lucide-react"
 
+// page component
 const ComponentShowcase: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false)
 
@@ -314,5 +315,6 @@ const ComponentShowcase: React.FC = () => {
     )
 }
 
+// export
 export default ComponentShowcase
 

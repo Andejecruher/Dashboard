@@ -1,7 +1,9 @@
-import { useState } from "react"
+// Desc: AddNew component
+import React, { useState } from "react"
 import { Plus, X, ArrowRight, BriefcaseBusiness, UsersRound } from "lucide-react"
 import Button from "./Button"
 
+// styles
 const classes = {
     addNew: `rounded-4xl`,
     container: `relative inline-block rounded-2xl`,
@@ -11,7 +13,8 @@ const classes = {
     dropdownsItemIcon: `text-grey-300 w-5`
 }
 
-export default function AddNew() {
+// component
+const AddNew: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleDropdown = () => setIsOpen(!isOpen)
@@ -66,4 +69,7 @@ export default function AddNew() {
         </div>
     )
 }
+
+// export
+export default AddNew;
 

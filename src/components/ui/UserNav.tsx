@@ -1,5 +1,7 @@
+// Desc: UserNav component
 import { useState } from "react"
 
+// styles
 const classes = {
     container: `relative inline-block`,
     containerButton: `h-[52x] w-[52px] flex justify-center items-center`,
@@ -10,7 +12,8 @@ const classes = {
     dropdownsItem: `block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left`
 }
 
-export default function UserNav() {
+// component
+const UserNav: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleDropdown = () => setIsOpen(!isOpen)
@@ -83,4 +86,7 @@ export default function UserNav() {
         </div>
     )
 }
+
+// export
+export default UserNav
 

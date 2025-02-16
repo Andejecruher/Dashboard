@@ -30,5 +30,6 @@ const ScreenColumnsBackground: React.FC<ScreenColumnsBackgroundProps> = ({
     )
 }
 
+// export
 export default ScreenColumnsBackground
 

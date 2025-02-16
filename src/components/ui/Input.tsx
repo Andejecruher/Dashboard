@@ -1,3 +1,4 @@
+// Desc: Input component
 import type React from "react"
 import { useState, useEffect } from "react"
 import {
@@ -131,5 +132,6 @@ const Input: React.FC<InputProps> = ({
     )
 }
 
+// export
 export default Input
 

@@ -1,3 +1,5 @@
+// Desc: Deals component
+// interface props
 export interface DealsProps {
     imageUrl: string
     address: string
@@ -8,6 +10,7 @@ export interface DealsProps {
     onClick?: () => void
 }
 
+// styles
 const classes = {
     container: `w-full h-20 py-2.5 flex items-start gap-3 overflow-hidden`,
     content: `flex-grow h-14 flex items-center gap-4`,
@@ -19,7 +22,8 @@ const classes = {
     alingRight: `flex items-start`
 }
 
-export default function Deal({ imageUrl, address, price, city, state, dateTime, onClick }: DealsProps) {
+// component
+const Deal: React.FC<DealsProps> = ({ imageUrl, address, price, city, state, dateTime, onClick }) => {
     return (
         <div className={classes.container} onClick={onClick}>
             <div className={classes.content}>
@@ -54,3 +58,5 @@ export default function Deal({ imageUrl, address, price, city, state, dateTime, 
     )
 }
 
+// export
+export default Deal

@@ -1,3 +1,4 @@
+// Desc: Task component
 import type React from "react"
 import { format } from "date-fns"
 import { Calendar } from "lucide-react"
@@ -42,5 +43,6 @@ const Task: React.FC<TaskProps> = ({ date, title, isHighlighted = false, onClick
     )
 }
 
+// export
 export default Task
 

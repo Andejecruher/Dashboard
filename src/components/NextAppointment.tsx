@@ -1,6 +1,8 @@
-import { SquareMeterIcon } from "./SquareMeterIcon"
+// Desc: NextAppointment component
+import SquareMeterIcon from "./SquareMeterIcon"
 import Button from "./ui/Button"
 
+// interface props
 interface NextAppointmentProps {
     address: string
     city: string
@@ -12,6 +14,7 @@ interface NextAppointmentProps {
     roomArea: number
 }
 
+// styles
 const classes = {
     card: `bg-blue rounded-xl border border-grey-100 relative p-6`,
     header: `flex items-center justify-between`,
@@ -30,7 +33,8 @@ const classes = {
 
 }
 
-export default function NextAppointment({
+// component
+const NextAppointment: React.FC<NextAppointmentProps> = ({
     address,
     city,
     state,
@@ -39,7 +43,7 @@ export default function NextAppointment({
     price,
     people,
     roomArea,
-}: NextAppointmentProps) {
+}) => {
     return (
         <section className={classes.card}>
             <div className={classes.header}>
@@ -113,3 +117,5 @@ export default function NextAppointment({
     )
 }
 
+// export
+export default NextAppointment

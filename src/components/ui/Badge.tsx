@@ -1,3 +1,4 @@
+// Note: Badge component 
 import React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -37,7 +38,7 @@ const badgeStyles = cva(
 )
 
 // component
-const Badge = React.memo(({ text, intent, size, className, ...props }: BadgeProps) => {
+const Badge: React.FC<BadgeProps> = React.memo(({ text, intent, size, className, ...props }) => {
     return (
         <button className={badgeStyles({ intent, size, className })} {...props}>
             {text}
@@ -45,4 +46,5 @@ const Badge = React.memo(({ text, intent, size, className, ...props }: BadgeProp
     )
 })
 
+// export
 export default Badge

@@ -1,11 +1,14 @@
+// Desc: RecentDeals component
 import React from "react";
 import Deal, { DealsProps } from "./ui/Deal";
 import Button from "./ui/Button";
 
+// interface props
 interface RecentDealsCardProps {
     deals: DealsProps[]
 }
 
+// styles
 const classes = {
     container: `bg-white rounded-xl border border-grey-100 p-6`,
     header: `flex items-center justify-between`,
@@ -14,6 +17,7 @@ const classes = {
     content: `flex flex-col`
 }
 
+// component
 const RecentDeals: React.FC<RecentDealsCardProps> = ({ deals }) => {
     return (
         <section className={classes.container}>
@@ -39,4 +43,5 @@ const RecentDeals: React.FC<RecentDealsCardProps> = ({ deals }) => {
     );
 };
 
+// export
 export default RecentDeals;

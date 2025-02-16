@@ -1,3 +1,4 @@
+// Desc: UserCard component
 import type React from "react";
 import { MoreVertical } from "lucide-react";
 
@@ -58,4 +59,5 @@ const UserCard: React.FC<UserCardProps> = ({ firstName, lastName, email, avatarU
     );
 };
 
+// export
 export default UserCard;
