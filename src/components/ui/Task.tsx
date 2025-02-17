@@ -1,7 +1,7 @@
 // Desc: Task component
 import type React from "react"
 import { format } from "date-fns"
-import { Calendar } from "lucide-react"
+import { Calendar, OctagonAlert } from "lucide-react"
 
 // interfaces props
 interface TaskProps {
@@ -18,7 +18,8 @@ const classes = {
     label: (isHighlighted: boolean) => `w-4 h-4 ${isHighlighted ? "text-red-500" : "text-gray-400"}`,
     date: (isHighlighted: boolean) => `text-sm leading-5 ${isHighlighted ? "text-red-500 font-medium" : "text-gray-500"}`,
     footer: `absolute top-1/2 left-[144px] right-6 transform -translate-y-1/2`,
-    footerTitle: `text-sm font-normal leading-5 text-gray-900 truncate`
+    footerTitle: `text-sm font-normal leading-5 text-gray-900 truncate flex gap-4 items-center`,
+    icon: `w-4 h-4 text-red-700`
 }
 
 //components
@@ -35,9 +36,15 @@ const Task: React.FC<TaskProps> = ({ date, title, isHighlighted = false, onClick
                 >
                     {format(date, "dd MMM yyyy")}
                 </span>
+
             </div>
             <div className={classes.footer}>
-                <span className={classes.footerTitle}>{title}</span>
+                <span className={classes.footerTitle}>
+                    {isHighlighted && (
+                        <OctagonAlert className={classes.icon} />
+                    )}
+                    {title}
+                </span>
             </div>
         </div>
     )
