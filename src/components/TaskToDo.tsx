@@ -18,8 +18,21 @@ const classes = {
     icon: `w-6 h-6`
 }
 
+// interface task
+interface Task {
+    title: string
+    isHighlighted: boolean
+    date: Date
+    onClick: () => void
+}
+
+// interface props
+interface TaskProps {
+    tasks?: Task[]
+}
+
 // component
-const TaskToDo: React.FC = () => {
+const TaskToDo: React.FC<TaskProps> = ({ tasks }) => {
     const [task, setTask] = React.useState<string>("");
     return (
         <div className={classes.container}>
@@ -28,36 +41,15 @@ const TaskToDo: React.FC = () => {
                 <Button className={classes.button} onClick={() => console.log("View all tasks clicked")} text="View all tasks" intent="ghost" />
             </div>
             <div className={classes.content}>
-                <Task
-                    title="Create a new design"
-                    isHighlighted={true}
-                    date={new Date(2022, 11, 25)}
-                    onClick={() => console.log("Task clicked")}
-                />
-                <Task
-                    title="Create a new design"
-                    isHighlighted={true}
-                    date={new Date(2022, 11, 25)}
-                    onClick={() => console.log("Task clicked")}
-                />
-                <Task
-                    title="Create a new design"
-                    isHighlighted={false}
-                    date={new Date(2022, 11, 25)}
-                    onClick={() => console.log("Task clicked")}
-                />
-                <Task
-                    title="Create a new design"
-                    isHighlighted={false}
-                    date={new Date(2022, 11, 25)}
-                    onClick={() => console.log("Task clicked")}
-                />
-                <Task
-                    title="Create a new design"
-                    isHighlighted={false}
-                    date={new Date(2022, 11, 25)}
-                    onClick={() => console.log("Task clicked")}
-                />
+                {tasks && tasks.map((task, index) => (
+                    <Task
+                        key={index}
+                        title={task.title}
+                        isHighlighted={task.isHighlighted}
+                        date={task.date}
+                        onClick={task.onClick}
+                    />
+                ))}
             </div>
             <div className={classes.footer}>
                 <div className={classes.footerContent}>
