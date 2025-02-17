@@ -133,20 +133,25 @@ const classes = {
     iconsKpis: `text-white w-10 h-10`
 }
 
+// appointment example\
+const appointment = {
+    address: "1538 Hammer Road",
+    city: "Cleveland",
+    state: "OH",
+    zipCode: "44114",
+    appointmentDate: "Nov 17, 10:00 AM",
+    price: 5750,
+    people: 4,
+    roomArea: 350
+}
+
 // page component
 const Dashboard: React.FC = () => {
     return (
         <section className={classes.section}>
             <div className={classes.container}>
                 <NextAppointment
-                    address="319 Haul Road"
-                    city="Glenrock"
-                    state="WY"
-                    zipCode="12345"
-                    appointmentDate="Nov 18 2021, 17:00"
-                    price={5750}
-                    people={10}
-                    roomArea={100} />
+                    appointment={appointment} />
                 <RecentDeals deals={recentDeals} />
                 <Costumers costumers={costumers} />
                 <div className={classes.kpis}>
@@ -155,13 +160,7 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div>
                     <DealInProgress
-                        imageUrl={deal.imageUrl}
-                        address={deal.address}
-                        city={deal.city}
-                        state={deal.state}
-                        onGoToDeal={() => console.log("Deal clicked")}
-                        onLoadMore={() => console.log("Load more")}
-                        comments={deal.comments}
+                        deal={deal}
                     />
                 </div>
                 <div>

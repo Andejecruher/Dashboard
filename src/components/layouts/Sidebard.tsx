@@ -16,7 +16,7 @@ const classes = {
     logoContainer: `w-[85px] h-[75px] border-b border-grey-100 items-center flex justify-center`,
     logo: `w-[46px] w-[46px]`,
     button: `group h-[50px] w-[50px] rounded-[50px] hover:bg-blue-500 hover:text-white border border-1 border-grey-100 bg-white cursor-pointer`,
-    icon: `h-5 w-5 text-gray-500 group-hover:text-white transition-colors`,
+    icon: `h-5 w-5 text-gray-500 group-hover:text-white`,
     nav: `flex flex-1 flex-col gap-4 mt-4`,
     mainContent: `flex-1 bg-grey-10`,
     header: `flex h-[76px] items-center justify-between border-b border-grey-100`,

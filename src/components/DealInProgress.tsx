@@ -10,8 +10,7 @@ export interface Comment {
     comment: string
 }
 
-// interface props
-export interface DealsProps {
+interface Deal {
     imageUrl: string
     address: string
     city: string
@@ -19,6 +18,11 @@ export interface DealsProps {
     onGoToDeal?: () => void
     onLoadMore?: () => void
     comments?: Comment[]
+}
+
+// interface props
+export interface DealsProps {
+    deal: Deal;
 }
 
 // styles
@@ -38,7 +42,17 @@ const classes = {
 }
 
 // component
-const DealInProgres: React.FC<DealsProps> = ({ imageUrl, address, city, state, onGoToDeal, onLoadMore, comments }) => {
+const DealInProgres: React.FC<DealsProps> = ({
+    deal: {
+        imageUrl,
+        address,
+        city,
+        state,
+        onGoToDeal,
+        onLoadMore,
+        comments
+    }
+}) => {
     return (
         <section className={classes.container}>
             <div className={classes.header}>

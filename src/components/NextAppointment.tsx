@@ -2,8 +2,8 @@
 import SquareMeterIcon from "./SquareMeterIcon"
 import Button from "./ui/Button"
 
-// interface props
-interface NextAppointmentProps {
+// interface Appointment
+interface Appointment {
     address: string
     city: string
     state: string
@@ -12,6 +12,11 @@ interface NextAppointmentProps {
     price: number
     people: number
     roomArea: number
+}
+
+// interface props
+interface NextAppointmentProps {
+    appointment: Appointment
 }
 
 // styles
@@ -35,14 +40,16 @@ const classes = {
 
 // component
 const NextAppointment: React.FC<NextAppointmentProps> = ({
-    address,
-    city,
-    state,
-    zipCode,
-    appointmentDate,
-    price,
-    people,
-    roomArea,
+    appointment: {
+        address,
+        city,
+        state,
+        zipCode,
+        appointmentDate,
+        price,
+        people,
+        roomArea
+    }
 }) => {
     return (
         <section className={classes.card}>
