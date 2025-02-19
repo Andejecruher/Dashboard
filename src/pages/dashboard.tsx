@@ -101,13 +101,13 @@ const tasks = [
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        isHighlighted: false,
+        isHighlighted: true,
         date: new Date(),
         onClick: () => console.log("Task clicked")
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        isHighlighted: false,
+        isHighlighted: true,
         date: new Date(),
         onClick: () => console.log("Task clicked")
     },

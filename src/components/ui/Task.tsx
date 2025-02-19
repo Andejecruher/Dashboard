@@ -19,7 +19,7 @@ const classes = {
     date: (isHighlighted: boolean) => `text-sm leading-5 ${isHighlighted ? "text-red-500 font-medium" : "text-gray-500"}`,
     footer: `absolute top-1/2 left-[144px] right-6 transform -translate-y-1/2`,
     footerTitle: `text-sm font-normal leading-5 text-gray-900 truncate flex gap-4 items-center`,
-    icon: `w-4 h-4 text-red-700`
+    icon: `w-4 h-4 text-red-500`,
 }
 
 //components
