@@ -15,7 +15,7 @@ const classes = {
     sidebar: `hidden w-[85px] flex-col items-center border-r border-1 border-grey-100 bg-grey pb-4 pr-4 pl-4 md:flex`,
     logoContainer: `w-[85px] h-[75px] border-b border-grey-100 items-center flex justify-center`,
     logo: `w-[46px] w-[46px]`,
-    button: `group h-[50px] w-[50px] rounded-[50px] hover:bg-blue-500 hover:text-white border border-1 border-grey-100 bg-white cursor-pointer`,
+    button: `group h-[50px] w-[50px] rounded-[50px] hover:bg-blue-500 border border-1 border-grey-100 bg-white cursor-pointer`,
     icon: `h-5 w-5 text-gray-500 group-hover:text-white`,
     nav: `flex flex-1 flex-col gap-4 mt-4`,
     mainContent: `flex-1 bg-grey-10`,
@@ -24,6 +24,7 @@ const classes = {
     search: (full: boolean) => `flex items-center justify-end gap-4 p-4 h-full ${!full && 'bg-grey-200'} `,
     title: `text-3xl text-navy font-bold`,
     addNew: `rounded-4xl`,
+    tooltip: `rounded-full`,
 }
 
 // sidebar Component
@@ -44,25 +45,25 @@ const Sidebard: React.FC = () => {
                     />
                 </div>
                 <nav className={classes.nav}>
-                    <TooltipItem position="right" tooltipsText="Dashboard">
+                    <TooltipItem position="right" tooltipsText="Dashboard" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Dashboard')} intent="ghost" size="md" className={classes.button} icon={<LayoutGrid className={classes.icon} />} iconPosition={'center'} />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Deals">
+                    <TooltipItem position="right" tooltipsText="Deals" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Deals')} intent="ghost" size="md" className={classes.button} icon={<Briefcase className={classes.icon} />} iconPosition={'center'} />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Costumers">
+                    <TooltipItem position="right" tooltipsText="Costumers" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Costumers')} intent="ghost" size="md" className={classes.button} icon={<Users className={classes.icon} />} iconPosition="center" />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Tasks">
+                    <TooltipItem position="right" tooltipsText="Tasks" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Tasks')} intent="ghost" size="md" className={classes.button} icon={<ListChecks className={classes.icon} />} iconPosition="center" />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Calendar">
+                    <TooltipItem position="right" tooltipsText="Calendar" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Calendar')} intent="ghost" size="md" className={classes.button} icon={<CalendarDays className={classes.icon} />} iconPosition="center" />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Notifications">
+                    <TooltipItem position="right" tooltipsText="Notifications" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Notifications')} intent="ghost" size="md" className={classes.button} icon={<BellDot className={classes.icon} />} iconPosition="center" />
                     </TooltipItem>
-                    <TooltipItem position="right" tooltipsText="Settings">
+                    <TooltipItem position="right" tooltipsText="Settings" className={classes.tooltip}>
                         <Button onClick={() => handleNavigate('/Settings')} intent="ghost" size="md" className={classes.button} icon={<Settings className={classes.icon} />} iconPosition="center" />
                     </TooltipItem>
                 </nav>

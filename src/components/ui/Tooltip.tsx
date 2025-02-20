@@ -6,6 +6,7 @@ interface TooltipProps {
     children: React.ReactNode
     tooltipsText: string
     position: "top" | "right" | "bottom" | "left"
+    className?: string
 }
 
 // styles
@@ -23,10 +24,10 @@ const classes = {
 }
 
 // Tooltip Component
-const TooltipItem: React.FC<TooltipProps> = ({ children, tooltipsText, position }) => {
+const TooltipItem: React.FC<TooltipProps> = ({ children, tooltipsText, position, className }) => {
     return (
         <div className={classes.tooltip}>
-            <div className={classes.group}>
+            <div className={classes.group + " " + className}>
                 {children}
                 <div
                     className={
