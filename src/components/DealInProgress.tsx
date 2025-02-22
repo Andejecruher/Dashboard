@@ -48,11 +48,18 @@ const DealInProgres: React.FC<DealsProps> = ({
         address,
         city,
         state,
-        onGoToDeal,
-        onLoadMore,
         comments
     }
 }) => {
+
+    const onGoToDeal = () => {
+        console.log("Go to deal clicked")
+    }
+
+    const onLoadMore = () => {
+        console.log("Load more clicked")
+    }
+
     return (
         <section className={classes.container}>
             <div className={classes.header}>

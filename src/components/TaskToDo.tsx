@@ -15,6 +15,7 @@ const classes = {
     footer: `w-full h-full`,
     footerContent: `flex items-center border-t-1 border-grey-200`,
     buttonAction: `border-none rounded-full text-black text-4xl font-bold`,
+    inputTask: `flex-grow pl-4 py-1`,
     icon: `w-6 h-6`
 }
 
@@ -23,7 +24,6 @@ interface Task {
     title: string
     isHighlighted: boolean
     date: Date
-    onClick: () => void
 }
 
 // interface props
@@ -47,7 +47,7 @@ const TaskToDo: React.FC<TaskProps> = ({ tasks }) => {
                         title={task.title}
                         isHighlighted={task.isHighlighted}
                         date={task.date}
-                        onClick={task.onClick}
+                        onClick={() => console.log("Task clicked")}
                     />
                 ))}
             </div>
@@ -55,7 +55,7 @@ const TaskToDo: React.FC<TaskProps> = ({ tasks }) => {
                 <div className={classes.footerContent}>
                     <Input
                         placeholder="Add new task"
-                        className="flex-grow"
+                        className={classes.inputTask}
                         onChange={(e) => setTask(e.target.value)}
                         value={task}
                     />

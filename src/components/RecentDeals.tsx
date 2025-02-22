@@ -13,7 +13,7 @@ const classes = {
     container: `bg-white rounded-xl border border-grey-100 p-6`,
     header: `flex items-center justify-between`,
     title: `text-navy text-lg font-bold`,
-    button: `border-none rounded-full text-blue text-sm font-medium`,
+    button: `border-none rounded-full text-blue text-sm font-medium z-10`,
     content: `flex flex-col`
 }
 
