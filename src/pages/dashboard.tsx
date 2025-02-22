@@ -96,42 +96,29 @@ const tasks = [
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         isHighlighted: true,
-        date: new Date(),
-        onClick: () => console.log("Task clicked")
+        date: new Date()
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         isHighlighted: true,
-        date: new Date(),
-        onClick: () => console.log("Task clicked")
+        date: new Date()
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         isHighlighted: true,
-        date: new Date(),
-        onClick: () => console.log("Task clicked")
+        date: new Date()
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         isHighlighted: false,
-        date: new Date(),
-        onClick: () => console.log("Task clicked")
+        date: new Date()
     },
     {
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         isHighlighted: false,
-        date: new Date(),
-        onClick: () => console.log("Task clicked")
+        date: new Date()
     }
 ]
-
-// style
-const classes = {
-    section: `p-4`,
-    container: `grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 justify-center mb-4`,
-    kpis: `flex flex-col gap-4 `,
-    iconsKpis: `text-white w-10 h-10`
-}
 
 // appointment example\
 const appointment = {
@@ -143,6 +130,15 @@ const appointment = {
     price: 5750,
     people: 4,
     roomArea: 350
+}
+
+
+// style
+const classes = {
+    section: `p-4`,
+    container: `grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 justify-center mb-4`,
+    kpis: `flex flex-col gap-4 `,
+    iconsKpis: `text-white w-10 h-10`
 }
 
 // page component
