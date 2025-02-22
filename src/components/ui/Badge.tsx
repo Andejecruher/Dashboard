@@ -1,15 +1,22 @@
-// Note: Badge component 
+"use client"
+
 import React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+import type { LucideIcon } from "lucide-react"
 
-// interface props
+// Updated interface with icon click handlers
 interface BadgeProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof badgeStyles> {
     text: string
+    leadingIcon?: LucideIcon
+    trailingIcon?: LucideIcon
+    iconClassName?: string
+    onLeadingIconClick?: (e: React.MouseEvent<SVGElement, MouseEvent>) => void
+    onTrailingIconClick?: (e: React.MouseEvent<SVGElement, MouseEvent>) => void
 }
 
-// styles
 const badgeStyles = cva(
-    "flex justify-center items-center flex-nowrap rounded-full font-['Inter'] font-bold text-sm leading-5 cursor-pointer",
+    "flex justify-center items-center flex-nowrap rounded-full font-['Inter'] font-bold text-sm leading-5 cursor-pointer gap-1.5",
     {
         variants: {
             intent: {
@@ -18,7 +25,6 @@ const badgeStyles = cva(
                 danger: "bg-[#fde8e8] text-[#e55353]",
                 warning: "bg-[#fffae6] text-[#f7b955]",
                 success: "bg-[#e6f7f2] text-[#53e5b9]",
-                // Add more variants as needed
             },
             size: {
                 small: "px-3 py-1",
@@ -37,14 +43,76 @@ const badgeStyles = cva(
     },
 )
 
-// component
-const Badge: React.FC<BadgeProps> = React.memo(({ text, intent, size, className, ...props }) => {
-    return (
-        <button className={badgeStyles({ intent, size, className })} {...props}>
-            {text}
-        </button>
-    )
-})
+const Badge = React.memo<BadgeProps>(
+    ({
+        text,
+        intent,
+        size,
+        className,
+        leadingIcon: LeadingIcon,
+        trailingIcon: TrailingIcon,
+        iconClassName,
+        onLeadingIconClick,
+        onTrailingIconClick,
+        onClick,
+        ...props
+    }) => {
+        // Icon size mapping based on badge size
+        const getIconSize = (size?: string) => {
+            switch (size) {
+                case "small":
+                case "sm":
+                    return 14
+                case "large":
+                case "lg":
+                    return 18
+                case "xl":
+                    return 20
+                default:
+                    return 16
+            }
+        }
 
-// export
+        const iconSize = getIconSize(size ?? undefined)
+
+        // Handle icon clicks with stopPropagation if there's a specific handler
+        const handleLeadingIconClick = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+            if (onLeadingIconClick) {
+                e.stopPropagation()
+                onLeadingIconClick(e)
+            }
+        }
+
+        const handleTrailingIconClick = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+            if (onTrailingIconClick) {
+                e.stopPropagation()
+                onTrailingIconClick(e)
+            }
+        }
+
+        return (
+            <button className={badgeStyles({ intent, size, className })} onClick={onClick} {...props}>
+                {LeadingIcon && (
+                    <LeadingIcon
+                        size={iconSize}
+                        className={cn("flex-shrink-0", onLeadingIconClick && "cursor-pointer hover:opacity-80", iconClassName)}
+                        onClick={handleLeadingIconClick}
+                    />
+                )}
+                {text}
+                {TrailingIcon && (
+                    <TrailingIcon
+                        size={iconSize}
+                        className={cn("flex-shrink-0", onTrailingIconClick && "cursor-pointer hover:opacity-80", iconClassName)}
+                        onClick={handleTrailingIconClick}
+                    />
+                )}
+            </button>
+        )
+    },
+)
+
+Badge.displayName = "Badge"
+
 export default Badge
+

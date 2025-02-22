@@ -18,6 +18,7 @@ import {
     EyeOff,
     ArrowBigLeftDash
 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 // interface props
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick"> {
@@ -32,6 +33,8 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "
     onRightIconClick?: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
     // crear type para un ref de useRef
     ref?: React.RefObject<HTMLInputElement | null>;
+    // className
+    className?: string
 
 }
 
@@ -57,14 +60,12 @@ const iconMapping = {
 // styles
 const classes = {
     container: "w-full max-w-full rounded-md relative mx-auto my-0",
-    label: "block mb-2 font-['Inter'] text-[16px] font-bold leading-[30px]",
-    inputWrapper: (error: string, success: boolean) => `
-    flex items-center w-full h-[50px] px-5 py-2.5 gap-3
-    bg-white rounded-[8px]
-    ${error ? "border-red-500" : success ? "border-green-500" : "border-[#eaeef4]"}
+    label: "block mb-2 text-base font-bold leading-11",
+    inputWrapper: (error: string, success: boolean) => `flex items-center w-full h-auto px-2 py-2.5 gap-3 bg-white rounded-md
+    ${error ? "border-red-500" : success ? "border-green-500" : "border-grey-300"}
   `,
-    input: "grow h-full bg-transparent border-none font-['Inter'] text-[16px] text-[#092c4c] placeholder-[#7e92a2] focus:outline-none",
-    icon: "w-5 h-5 text-[#7e92a2] cursor-pointer",
+    input: "grow h-full bg-transparent border-none text-base text-navy placeholder-grey-700 focus:outline-none",
+    icon: "w-5 h-5 text-grey-700 cursor-pointer",
     error: "mt-1 text-sm text-red-500",
 };
 
@@ -116,7 +117,7 @@ const Input: React.FC<InputProps> = ({
     }
 
     return (
-        <div className={classes.container}>
+        <div className={cn(classes.container, className)}>
             {label && <label className={classes.label}>{label}</label>}
             <div className={classes.inputWrapper(error || "", success)}>
                 {Icon && <Icon className={classes.icon} onClick={onIconClick} />}
