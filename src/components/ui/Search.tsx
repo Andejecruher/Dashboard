@@ -12,7 +12,7 @@ const classes = {
     searchContainer: `flex items-center rounded-full overflow-hidden shadow-md bg-white`,
     iconSearch: `h-5 w-5 text-gray-500 group-hover:text-blue-500 transition-colors duration-200`,
     buttonSearch: `group h-10 w-10 rounded-full hover:text-white transition-colors duration-200 border-transparent hover:bg-transparent`,
-    input: `flex-1 h-[40px] p-0 mr-1 ml-1 rounded-full border-transparent border-0 bg-white`
+    input: `flex-1 h-[50px] pt-1 mr-1 ml-1 rounded-full border-transparent border-0 bg-white`
 }
 
 // component
