@@ -1,3 +1,4 @@
+// Desc: DataTable component for displaying data in a table with sorting, filtering, and pagination
 import { useState, useEffect, useMemo, JSX } from "react";
 import {
     DropdownMenu,
@@ -30,6 +31,7 @@ import {
     Folder,
 } from "lucide-react";
 
+// Column type
 export interface Column {
     key: string;
     label: string;
@@ -41,17 +43,20 @@ export interface Column {
     component?: (row: any) => JSX.Element;
 }
 
+// Sort type
 interface Sort {
     key: string;
     direction: "asc" | "desc";
 }
 
+// Filter type
 interface Filter {
     key: string;
     operator: string;
     value: string;
 }
 
+// Row actions type
 interface RowActions<T> {
     onView?: (row: T) => void;
     onEdit?: (row: T) => void;
@@ -59,6 +64,7 @@ interface RowActions<T> {
     onCreate?: () => void;
 }
 
+// Row actions text
 interface RowActionsText {
     view?: string;
     edit?: string;
@@ -66,6 +72,7 @@ interface RowActionsText {
     create?: string;
 }
 
+// interface DataTableProps
 interface DataTableProps<T = any> {
     data: T[];
     columns: Column[];
@@ -76,7 +83,54 @@ interface DataTableProps<T = any> {
     actionsText?: RowActionsText;
 }
 
-export default function DataTable({
+// Styles
+const classes = {
+    container: `w-full space-y-4`,
+    header: `flex items-center justify-between gap-4`,
+    headerContent: `flex items-center gap-4`,
+    inputSearch: `border-1 border-grey-300 h-[45px]`,
+    buttonAdd: `rounded-md`,
+    iconAdd: `h-4 w-4 mr-2`,
+    filtresContainer: `flex items-center gap-2 z-2`,
+    buttonFilter: `w-auto p-2 rounded-full border border-gray-400 bg-white`,
+    iconFilter: `w-4 h-4 text-gray-800`,
+    drowpdownContent: `w-full bg-white shadow-lg rounded-md`,
+    drowpdownTigger: `text-base text-black`,
+    drowpdownSubContent: `bg-white shadow-lg rounded-md text-base`,
+    drowpdownItem: `text-base`,
+    drowpdownMenuItem: `justify-center text-muted-foreground`,
+    clearFilters: `h-7 px-2 text-base rounded-md`,
+    filtersActive: `flex flex-wrap items-center gap-2`,
+    badgeFilter: `flex items-center gap-1 px-3 py-1 hover:bg-secondary/80`,
+    clearAllFilters: `text-xs rounded-md`,
+    table: `rounded-md`,
+    tableWrapper: `overflow-x-auto`,
+    tableContent: `w-full table-auto`,
+    tableTr: `border-b bg-muted border-gray-200`,
+    tableTh: `px-4 py-3 text-left text-sm font-medium text-gray-500`,
+    buttonSort: `inline-flex items-center gap-1 hover:text-primary`,
+    iconHeaderTable: `mr-2 h-6 w-6`,
+    iconSort: `h-4 w-4 text-muted-foreground`,
+    tableThRow: `px-4 py-3 text-left text-sm font-medium text-black-200`,
+    avatar: 'w-8 h-8 rounded-full',
+    file: 'text-blue-600',
+    tableThActions: `px-4 py-3 text-sm text-right`,
+    contentActions: `flex items-center justify-center`,
+    buttonAction: `border-none w-4 hover:bg-gray-200 rounded-full`,
+    iconView: `h-5 w-5 text-blue`,
+    iconEdit: `h-5 w-5 text-green`,
+    iconDelete: `h-5 w-5 text-red-600`,
+    tableNotFound: `px-4 py-8 text-center text-sm text-muted-foreground`,
+    notFound: `text-xl text-gray-400`,
+    footer: `flex items-center justify-between mt-4`,
+    footerInfo: `text-base text-muted-foreground`,
+    pagination: `flex items-center gap-2`,
+    buttonPaginate: `rounded-md`,
+    infoPaginate: `text-base text-muted-foreground`,
+};
+
+// DataTable Component
+const DataTable: React.FC<DataTableProps> = ({
     data = [],
     columns = [],
     itemsPerPage = 10,
@@ -84,7 +138,7 @@ export default function DataTable({
     onFilter,
     actions,
     actionsText,
-}: DataTableProps) {
+}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [sorts, setSorts] = useState<Sort[]>([]);
     const [filters, setFilters] = useState<Filter[]>([]);
@@ -265,14 +319,14 @@ export default function DataTable({
     };
 
     return (
-        <div className="w-full space-y-4">
+        <div className={classes.container}>
             {/* Header Tools */}
-            <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
+            <div className={classes.header}>
+                <div className={classes.headerContent}>
                     {/* Search */}
                     <div className="">
                         <Input
-                            className="border-1 border-grey-300 h-[45px]"
+                            className={classes.inputSearch}
                             placeholder="Buscar..."
                             icon="search"
                             onKeyDown={(e) => {
@@ -290,46 +344,46 @@ export default function DataTable({
                     {/* Create Button */}
                     {actions?.onCreate && (
                         <Button
-                            className="rounded-md"
+                            className={classes.buttonAdd}
                             onClick={actions.onCreate}
                             size="large"
                             text={actionsText?.create || "Create"}
                             intent="primary"
-                            icon={<Plus className="h-4 w-4 mr-2" />}
+                            icon={<Plus className={classes.iconAdd} />}
                             iconPosition="right"
                         />
                     )}
                 </div>
 
-                <div className="flex items-center gap-2 z-2">
+                <div className={classes.filtresContainer}>
                     {/* Filter Dropdown */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
                                 intent="outline"
                                 size="lg"
-                                icon={<ListFilterPlus className="w-4 h-4 text-gray-800" />}
-                                className="w-auto p-2 rounded-full border border-gray-400 bg-white"
+                                icon={<ListFilterPlus className={classes.iconFilter} />}
+                                className={classes.buttonFilter}
                                 text="Filters"
                                 iconPosition="right"
                             />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                             align="end"
-                            className="w-full bg-white shadow-lg rounded-md"
+                            className={classes.drowpdownContent}
                         >
                             <DropdownMenuLabel>Filter by</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {filterableColumns.map((column) => (
                                 <DropdownMenuSub key={column.key}>
-                                    <DropdownMenuSubTrigger className="text-base text-black">
+                                    <DropdownMenuSubTrigger className={classes.drowpdownTigger}>
                                         {column.label}
                                     </DropdownMenuSubTrigger>
-                                    <DropdownMenuSubContent className="bg-white shadow-lg rounded-md text-base">
+                                    <DropdownMenuSubContent className={classes.drowpdownSubContent}>
                                         {column.options &&
                                             column.options.map((option) => (
                                                 <DropdownMenuCheckboxItem
-                                                    className="text-base"
+                                                    className={classes.drowpdownItem}
                                                     key={option}
                                                     checked={filters.some(
                                                         (f) =>
@@ -354,12 +408,12 @@ export default function DataTable({
                             {filters.length > 0 && (
                                 <>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className="justify-center text-muted-foreground">
+                                    <DropdownMenuItem className={classes.drowpdownMenuItem}>
                                         <Button
                                             intent="primary"
                                             size="md"
                                             onClick={clearAllFilters}
-                                            className="h-7 px-2 text-base rounded-md"
+                                            className={classes.clearFilters}
                                             text="Clear all filters"
                                         />
                                     </DropdownMenuItem>
@@ -372,12 +426,12 @@ export default function DataTable({
 
             {/* Active Filters */}
             {filters.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2">
+                <div className={classes.filtersActive}>
                     {filters.map((filter, index) => (
                         <Badge
                             key={index}
                             intent="secondary"
-                            className="flex items-center gap-1 px-3 py-1 hover:bg-secondary/80"
+                            className={classes.badgeFilter}
                             text={`${getColumnLabel(filter.key)}: ${filter.value}`}
                             trailingIcon={X}
                             onTrailingIconClick={() => clearFilter(index)}
@@ -387,43 +441,43 @@ export default function DataTable({
                         intent="primary"
                         size="md"
                         onClick={clearAllFilters}
-                        className="text-xs rounded-md"
+                        className={classes.clearAllFilters}
                         text="Clear all filters"
                     />
                 </div>
             )}
 
             {/* Table */}
-            <div className="rounded-md border overflow-auto">
-                <div className="overflow-x-auto">
-                    <table className="w-full table-auto">
+            <div className={classes.table}>
+                <div className={classes.tableWrapper}>
+                    <table className={classes.tableContent}>
                         <thead>
-                            <tr className="border-b bg-muted/50">
+                            <tr className={classes.tableTr}>
                                 {columns.map((column) => (
                                     <th
                                         key={column.key}
-                                        className="px-4 py-3 text-left text-sm font-medium text-gray-500"
+                                        className={classes.tableTh}
                                     >
                                         {column.sortable ? (
                                             <button
                                                 onClick={() => handleSort(column.key)}
-                                                className="inline-flex items-center gap-1 hover:text-primary"
+                                                className={classes.buttonSort}
                                             >
                                                 {
                                                     column.type === "image" ? (
-                                                        <Image className="h-6 w-6" />
+                                                        <Image className={classes.iconHeaderTable} />
                                                     ) : column.type === "file" ? (
-                                                        <Folder className="h-6 w-6" />
+                                                        <Folder className={classes.iconHeaderTable} />
                                                     ) : null
                                                 }
                                                 {column.label}
                                                 <span className="ml-1">
                                                     {getSortDirection(column.key) === "asc" ? (
-                                                        <ArrowUp className="h-4 w-4" />
+                                                        <ArrowUp className={classes.iconSort} />
                                                     ) : getSortDirection(column.key) === "desc" ? (
-                                                        <ArrowDown className="h-4 w-4" />
+                                                        <ArrowDown className={classes.iconSort} />
                                                     ) : (
-                                                        <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+                                                        <ArrowUpDown className={classes.iconSort} />
                                                     )}
                                                 </span>
                                             </button>
@@ -434,7 +488,7 @@ export default function DataTable({
                                 ))}
                                 {/* Actions Column Header */}
                                 {(actions?.onView || actions?.onEdit || actions?.onDelete) && (
-                                    <th className="px-4 py-3 text-center text-sm font-medium">
+                                    <th className={classes.tableTh}>
                                         Actions
                                     </th>
                                 )}
@@ -444,27 +498,27 @@ export default function DataTable({
                             {currentData.map((row, index) => (
                                 <tr
                                     key={index}
-                                    className="border-b last:border-none hover:bg-muted/50"
+                                    className={classes.tableTr}
                                 >
                                     {columns.map((column) => (
                                         column.component ? (
-                                            <td className="px-4 py-3 text-base text-black">
+                                            <td className={classes.tableThRow}>
                                                 {column.component(row)}
                                             </td>
                                         ) : (
-                                            <td className="px-4 py-3 text-base text-black">
+                                            <td className={classes.tableThRow}>
                                                 {column.type === "image" ? (
                                                     <img
                                                         src={row[column.key]}
                                                         alt={row[column.key]}
-                                                        className="w-8 h-8 rounded-full"
+                                                        className={classes.avatar}
                                                     />
                                                 ) : column.type === "file" ? (
                                                     <a
                                                         href={row[column.key]}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-blue-500"
+                                                        className={classes.file}
                                                     >
                                                         {row[column.key]}
                                                     </a>
@@ -480,15 +534,15 @@ export default function DataTable({
                                     {(actions?.onView ||
                                         actions?.onEdit ||
                                         actions?.onDelete) && (
-                                            <td className="px-4 py-3 text-sm text-right">
-                                                <div className="flex items-center justify-center">
+                                            <td className={classes.tableThActions}>
+                                                <div className={classes.contentActions}>
                                                     {actions?.onView && (
                                                         <TooltipItem tooltipsText={actionsText?.view || "View"} position="top">
                                                             <Button
-                                                                className="border-none w-4 hover:bg-gray-200 rounded-full"
+                                                                className={classes.buttonAction}
                                                                 intent="ghost"
                                                                 size="md"
-                                                                icon={<Eye className="h-5 w-5 text-blue" />}
+                                                                icon={<Eye className={classes.iconView} />}
                                                                 iconPosition="center"
                                                                 onClick={() => actions.onView?.(row)}
                                                             />
@@ -497,10 +551,10 @@ export default function DataTable({
                                                     {actions?.onEdit && (
                                                         <TooltipItem tooltipsText={actionsText?.edit || "Edit"} position="top">
                                                             <Button
-                                                                className="border-none w-4 hover:bg-gray-200 rounded-full"
+                                                                className={classes.buttonAction}
                                                                 intent="ghost"
                                                                 size="md"
-                                                                icon={<Pencil className="h-5 w-5 text-green" />}
+                                                                icon={<Pencil className={classes.iconEdit} />}
                                                                 iconPosition="center"
                                                                 onClick={() => actions.onEdit?.(row)}
                                                             />
@@ -509,10 +563,10 @@ export default function DataTable({
                                                     {actions?.onDelete && (
                                                         <TooltipItem tooltipsText={actionsText?.delete || "Delete"} position="top">
                                                             <Button
-                                                                className="border-none w-4 hover:bg-gray-200 rounded-full"
+                                                                className={classes.buttonAction}
                                                                 intent="ghost"
                                                                 size="md"
-                                                                icon={<Trash2 className="h-5 w-5 text-red-600" />}
+                                                                icon={<Trash2 className={classes.iconDelete} />}
                                                                 iconPosition="center"
                                                                 onClick={() => actions.onDelete?.(row)}
                                                             />
@@ -527,9 +581,9 @@ export default function DataTable({
                                 <tr>
                                     <td
                                         colSpan={columns.length}
-                                        className="px-4 py-8 text-center text-sm text-muted-foreground"
+                                        className={classes.tableNotFound}
                                     >
-                                        No results found
+                                        <span className={classes.notFound}>No data found</span>
                                     </td>
                                 </tr>
                             )}
@@ -540,26 +594,26 @@ export default function DataTable({
 
             {/* Pagination */}
             {totalPages > 1 && (
-                <div className="flex items-center justify-between">
-                    <div className="text-base text-muted-foreground">
+                <div className={classes.footer}>
+                    <div className={classes.footerInfo}>
                         Showing {startIndex + 1} to{" "}
                         {Math.min(endIndex, filteredData.length)} of {filteredData.length}{" "}
                         record
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className={classes.pagination}>
                         <Button
-                            className="rounded-md"
+                            className={classes.buttonPaginate}
                             intent="primary"
                             size="md"
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                             text="Previous"
                         />
-                        <div className="text-base text-muted-foreground">
+                        <div className={classes.infoPaginate}>
                             Page {currentPage} of {totalPages}
                         </div>
                         <Button
-                            className="rounded-md"
+                            className={classes.buttonPaginate}
                             intent="primary"
                             size="md"
                             onClick={() => handlePageChange(currentPage + 1)}
@@ -572,3 +626,6 @@ export default function DataTable({
         </div>
     );
 }
+
+// Export 
+export default DataTable;
