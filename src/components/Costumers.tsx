@@ -14,7 +14,7 @@ const classes = {
     container: `bg-white rounded-xl border border-grey-100 p-6`,
     header: `flex items-center justify-between`,
     title: `text-navy text-lg font-bold`,
-    button: `border-none rounded-full text-blue text-sm font-medium`,
+    button: `border-none rounded-full text-blue text-sm font-medium z-10`,
     content: `flex flex-col`
 }
 
@@ -24,7 +24,7 @@ const Costumers: React.FC<CostumersProps> = ({ costumers }) => {
         <section className={classes.container}>
             <div className={classes.header}>
                 <div className={classes.title}>Costumers</div>
-                <Button className={classes.button} onClick={() => console.log("View all deals clicked")} text="View all deals" intent="ghost" />
+                <Button className={classes.button} size="md" onClick={() => console.log("View all customers clicked")} text="View all costumers" intent="ghost" />
             </div>
             <div className={classes.content}>
                 {costumers.map((costumer, index) => (
