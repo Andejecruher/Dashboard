@@ -29,10 +29,19 @@ const classes = {
 
 // sidebar Component
 const Sidebard: React.FC = () => {
+    const [title, setTitle] = React.useState('Dashboard')
     const navigate = useNavigate()
     const handleNavigate = (page: string) => {
         navigate(page)
+        setTitle(page.split('/')[1])
     }
+
+    React.useEffect(() => {
+        const path = window.location.pathname
+        const page = path.split('/')[1]
+        setTitle(page)
+    }, [])
+
     return (
         <div className={classes.container}>
             {/* Sidebar */}
@@ -73,7 +82,9 @@ const Sidebard: React.FC = () => {
             <div className={classes.mainContent}>
                 <header className={classes.header}>
                     <div className={classes.headerContent}>
-                        <h1 className={classes.title}>Dashboard</h1>
+                        <h1 className={classes.title}>
+                            {title}
+                        </h1>
                     </div>
                     <div className={classes.search(true)}>
                         <AddNew />
