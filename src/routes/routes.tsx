@@ -3,6 +3,7 @@ import Sidebard from "@/components/layouts/Sidebard";
 import ErrorPage from "@/pages/error-page";
 import ComponentShowcase from "@/pages/component-showcase";
 import Dashboard from "@/pages/dashboard";
+import Deals from "@/pages/deals";
 
 const routes: RouteObject[] = [
   {
@@ -21,6 +22,10 @@ const routes: RouteObject[] = [
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "deals",
+        element: <Deals />,
       }
     ],
   },
