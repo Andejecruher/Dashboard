@@ -5,6 +5,7 @@ import ComponentShowcase from "@/pages/component-showcase";
 import Dashboard from "@/pages/dashboard";
 import Deals from "@/pages/deals";
 import Costumers from "@/pages/costumers";
+import Tasks from "@/pages/tasks";
 
 const routes: RouteObject[] = [
   {
@@ -29,6 +30,7 @@ const routes: RouteObject[] = [
         element: <Deals />,
       },
       { path: "costumers", element: <Costumers /> },
+      { path: "tasks", element: <Tasks /> },
     ],
   },
   // create route for redirect to /components
