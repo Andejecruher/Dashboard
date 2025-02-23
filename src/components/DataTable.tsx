@@ -32,7 +32,7 @@ import {
 } from "lucide-react";
 
 // Column type
-export interface Column {
+export interface Column<T = any> {
     key: string;
     label: string;
     sortable?: boolean;
@@ -40,17 +40,17 @@ export interface Column {
     type?: "text" | "select" | "date" | "number" | "image" | "file";
     options?: string[];
     autoIncrement?: boolean;
-    component?: (row: any) => JSX.Element;
+    component?: (row: T) => JSX.Element;
 }
 
 // Sort type
-interface Sort {
+export interface Sort {
     key: string;
     direction: "asc" | "desc";
 }
 
 // Filter type
-interface Filter {
+export interface Filter {
     key: string;
     operator: string;
     value: string;
@@ -75,7 +75,7 @@ interface RowActionsText {
 // interface DataTableProps
 interface DataTableProps<T = any> {
     data: T[];
-    columns: Column[];
+    columns: Column<T>[];
     itemsPerPage?: number;
     onSort?: (sorts: Sort[]) => void;
     onFilter?: (filters: Filter[]) => void;
@@ -357,70 +357,72 @@ const DataTable: React.FC<DataTableProps> = ({
 
                 <div className={classes.filtresContainer}>
                     {/* Filter Dropdown */}
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button
-                                intent="outline"
-                                size="lg"
-                                icon={<ListFilterPlus className={classes.iconFilter} />}
-                                className={classes.buttonFilter}
-                                text="Filters"
-                                iconPosition="right"
-                            />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent
-                            align="end"
-                            className={classes.drowpdownContent}
-                        >
-                            <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            {filterableColumns.map((column) => (
-                                <DropdownMenuSub key={column.key}>
-                                    <DropdownMenuSubTrigger className={classes.drowpdownTigger}>
-                                        {column.label}
-                                    </DropdownMenuSubTrigger>
-                                    <DropdownMenuSubContent className={classes.drowpdownSubContent}>
-                                        {column.options &&
-                                            column.options.map((option) => (
-                                                <DropdownMenuCheckboxItem
-                                                    className={classes.drowpdownItem}
-                                                    key={option}
-                                                    checked={filters.some(
-                                                        (f) =>
-                                                            f.key === column.key &&
-                                                            f.value === option &&
-                                                            f.operator ===
-                                                            getOperatorForColumnType(column.type)
-                                                    )}
-                                                    onCheckedChange={() => {
-                                                        const operator = getOperatorForColumnType(
-                                                            column.type
-                                                        );
-                                                        handleFilter(column.key, option, operator);
-                                                    }}
-                                                >
-                                                    {option}
-                                                </DropdownMenuCheckboxItem>
-                                            ))}
-                                    </DropdownMenuSubContent>
-                                </DropdownMenuSub>
-                            ))}
-                            {filters.length > 0 && (
-                                <>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem className={classes.drowpdownMenuItem}>
-                                        <Button
-                                            intent="primary"
-                                            size="md"
-                                            onClick={clearAllFilters}
-                                            className={classes.clearFilters}
-                                            text="Clear all filters"
-                                        />
-                                    </DropdownMenuItem>
-                                </>
-                            )}
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    {filterableColumns.length > 0 && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    intent="outline"
+                                    size="lg"
+                                    icon={<ListFilterPlus className={classes.iconFilter} />}
+                                    className={classes.buttonFilter}
+                                    text="Filters"
+                                    iconPosition="right"
+                                />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent
+                                align="end"
+                                className={classes.drowpdownContent}
+                            >
+                                <DropdownMenuLabel>Filter by</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                {filterableColumns.map((column) => (
+                                    <DropdownMenuSub key={column.key}>
+                                        <DropdownMenuSubTrigger className={classes.drowpdownTigger}>
+                                            {column.label}
+                                        </DropdownMenuSubTrigger>
+                                        <DropdownMenuSubContent className={classes.drowpdownSubContent}>
+                                            {column.options &&
+                                                column.options.map((option) => (
+                                                    <DropdownMenuCheckboxItem
+                                                        className={classes.drowpdownItem}
+                                                        key={option}
+                                                        checked={filters.some(
+                                                            (f) =>
+                                                                f.key === column.key &&
+                                                                f.value === option &&
+                                                                f.operator ===
+                                                                getOperatorForColumnType(column.type)
+                                                        )}
+                                                        onCheckedChange={() => {
+                                                            const operator = getOperatorForColumnType(
+                                                                column.type
+                                                            );
+                                                            handleFilter(column.key, option, operator);
+                                                        }}
+                                                    >
+                                                        {option}
+                                                    </DropdownMenuCheckboxItem>
+                                                ))}
+                                        </DropdownMenuSubContent>
+                                    </DropdownMenuSub>
+                                ))}
+                                {filters.length > 0 && (
+                                    <>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem className={classes.drowpdownMenuItem}>
+                                            <Button
+                                                intent="primary"
+                                                size="md"
+                                                onClick={clearAllFilters}
+                                                className={classes.clearFilters}
+                                                text="Clear all filters"
+                                            />
+                                        </DropdownMenuItem>
+                                    </>
+                                )}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
                 </div>
             </div>
 
