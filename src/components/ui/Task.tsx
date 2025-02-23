@@ -1,12 +1,12 @@
 // Desc: Task component
 import type React from "react"
 import { format } from "date-fns"
-import { Calendar, OctagonAlert } from "lucide-react"
+import { Calendar, OctagonAlert, SquareCheck } from "lucide-react"
 
 // interfaces props
 interface TaskProps {
     date: Date
-    title: string
+    title?: string
     isHighlighted?: boolean
     onClick?: () => void
 }
@@ -20,6 +20,7 @@ const classes = {
     footer: `absolute top-1/2 left-[144px] right-6 transform -translate-y-1/2`,
     footerTitle: `text-sm font-normal leading-5 text-gray-900 truncate flex gap-4 items-center`,
     icon: `w-4 h-4 text-red-500`,
+    iconCheck: `w-4 h-4 text-green-500`,
 }
 
 //components
@@ -36,14 +37,13 @@ const Task: React.FC<TaskProps> = ({ date, title, isHighlighted = false, onClick
                 >
                     {format(date, "dd MMM yyyy")}
                 </span>
-
             </div>
             <div className={classes.footer}>
                 <span className={classes.footerTitle}>
-                    {isHighlighted && (
+                    {isHighlighted ? (
                         <OctagonAlert className={classes.icon} />
-                    )}
-                    {title}
+                    ) : (<SquareCheck className={classes.iconCheck} />)}
+                    {title && title}
                 </span>
             </div>
         </div>

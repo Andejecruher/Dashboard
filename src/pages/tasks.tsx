@@ -1,5 +1,8 @@
 //DESC: Tasks page with a table 
 import DataTable, { Column, Sort, Filter } from "@/components/DataTable";
+import Task from "@/components/ui/Task";
+import { OctagonAlert, SquareCheck } from "lucide-react"
+import { format } from "date-fns"
 import { tasks } from "@/lib/tasks-faker";
 
 //styles
@@ -8,6 +11,10 @@ const classes = {
     title: `text-2xl font-bold mb-6`,
     roomArea: `self-stretch justify-start items-start gap-2 inline-flex overflow-hidden`,
     label: `text-base`,
+    icon: `w-4 h-4 text-red-500`,
+    iconCheck: `w-4 h-4 text-green-500`,
+    taskDate: `flex items-center gap-4`,
+    date: (isHighlighted: boolean) => `text-sm leading-5 ${isHighlighted ? "text-red-500 font-medium" : "text-gray-500"}`,
 };
 
 // Costumer interface
@@ -31,6 +38,20 @@ const columns: Column<Task>[] = [
         label: "Due Date",
         sortable: true,
         type: "text",
+        component: (row: Task) => {
+            return (
+                <div className={classes.taskDate}>
+                    {row.isHighlighted ? (
+                        <OctagonAlert className={classes.icon} />
+                    ) : (<SquareCheck className={classes.iconCheck} />)}
+                    <span
+                        className={classes.date(row.isHighlighted)}
+                    >
+                        {format(row.date, "dd MMM yyyy")}
+                    </span>
+                </div>
+            );
+        }
     },
     {
         key: "title",
@@ -70,6 +91,8 @@ const Tasks: React.FC = () => {
         console.log("Creating new user");
         // Implement create logic
     };
+
+    console.log("Tasks:", tasks);
 
     return (
         <section className={classes.container}>
