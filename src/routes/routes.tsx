@@ -4,6 +4,7 @@ import ErrorPage from "@/pages/error-page";
 import ComponentShowcase from "@/pages/component-showcase";
 import Dashboard from "@/pages/dashboard";
 import Deals from "@/pages/deals";
+import Costumers from "@/pages/costumers";
 
 const routes: RouteObject[] = [
   {
@@ -26,11 +27,11 @@ const routes: RouteObject[] = [
       {
         path: "deals",
         element: <Deals />,
-      }
+      },
+      { path: "costumers", element: <Costumers /> },
     ],
   },
   // create route for redirect to /components
-
 ];
 
 const router = createBrowserRouter(routes);
