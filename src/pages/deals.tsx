@@ -122,8 +122,6 @@ const Deals: React.FC = () => {
         // Implement create logic
     };
 
-    console.log(deals);
-
     return (
         <section className={classes.container}>
             <h1 className={classes.title}>List of the deals</h1>
