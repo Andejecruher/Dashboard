@@ -8,6 +8,7 @@ import AddNew from "@/components/ui/AddNew"
 import TooltipItem from "../ui/Tooltip"
 import { CalendarDays, Users, Briefcase, LayoutGrid, ListChecks, Settings, BellDot } from "lucide-react"
 import Logo from "@/assets/Logo.svg"
+import { cn } from "@/lib/utils"
 
 // styles
 const classes = {
@@ -25,6 +26,7 @@ const classes = {
     title: `text-3xl text-navy font-bold`,
     addNew: `rounded-4xl`,
     tooltip: `rounded-full`,
+    active: `bg-blue-500 text-white`,
 }
 
 // sidebar Component
@@ -55,25 +57,25 @@ const Sidebard: React.FC = () => {
                 </div>
                 <nav className={classes.nav}>
                     <TooltipItem position="right" tooltipsText="Dashboard" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Dashboard')} intent="ghost" size="md" className={classes.button} icon={<LayoutGrid className={classes.icon} />} iconPosition={'center'} />
+                        <Button onClick={() => handleNavigate('/Dashboard')} intent="ghost" size="md" className={cn(classes.button, title === 'Dashboard' && classes.active)} icon={<LayoutGrid className={cn(classes.icon, title === "Dashboard" && classes.active)} />} iconPosition={'center'} />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Deals" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Deals')} intent="ghost" size="md" className={classes.button} icon={<Briefcase className={classes.icon} />} iconPosition={'center'} />
+                        <Button onClick={() => handleNavigate('/Deals')} intent="ghost" size="md" className={cn(classes.button, title === 'Deals' && classes.active)} icon={<Briefcase className={cn(classes.icon, title === "Deals" && classes.active)} />} iconPosition={'center'} />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Costumers" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Costumers')} intent="ghost" size="md" className={classes.button} icon={<Users className={classes.icon} />} iconPosition="center" />
+                        <Button onClick={() => handleNavigate('/Costumers')} intent="ghost" size="md" className={cn(classes.button, title === 'Costumers' && classes.active)} icon={<Users className={cn(classes.icon, title === "Costumers" && classes.active)} />} iconPosition="center" />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Tasks" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Tasks')} intent="ghost" size="md" className={classes.button} icon={<ListChecks className={classes.icon} />} iconPosition="center" />
+                        <Button onClick={() => handleNavigate('/Tasks')} intent="ghost" size="md" className={cn(classes.button, title === 'Tasks' && classes.active)} icon={<ListChecks className={cn(classes.icon, title === "Tasks" && classes.active)} />} iconPosition="center" />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Calendar" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Calendar')} intent="ghost" size="md" className={classes.button} icon={<CalendarDays className={classes.icon} />} iconPosition="center" />
+                        <Button onClick={() => handleNavigate('/Calendar')} intent="ghost" size="md" className={cn(classes.button, title === 'Calendar' && classes.active)} icon={<CalendarDays className={cn(classes.icon, title === "Calendar" && classes.active)} />} iconPosition="center" />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Notifications" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Notifications')} intent="ghost" size="md" className={classes.button} icon={<BellDot className={classes.icon} />} iconPosition="center" />
+                        <Button onClick={() => handleNavigate('/Notifications')} intent="ghost" size="md" className={cn(classes.button, title === 'Notifications' && classes.active)} icon={<BellDot className={cn(classes.icon, title === "Notifications" && classes.active)} />} iconPosition="center" />
                     </TooltipItem>
                     <TooltipItem position="right" tooltipsText="Settings" className={classes.tooltip}>
-                        <Button onClick={() => handleNavigate('/Settings')} intent="ghost" size="md" className={classes.button} icon={<Settings className={classes.icon} />} iconPosition="center" />
+                        <Button onClick={() => handleNavigate('/Settings')} intent="ghost" size="md" className={cn(classes.button, title === 'Settings' && classes.active)} icon={<Settings className={cn(classes.icon, title === "Settings" && classes.active)} />} iconPosition="center" />
                     </TooltipItem>
                 </nav>
             </div>
