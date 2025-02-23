@@ -1,8 +1,10 @@
-import DataTable, { Column } from "@/components/DataTable";
+// DESC: Deals page with a table
+import DataTable, { Column, Sort, Filter } from "@/components/DataTable";
 import ColumnNameDeal from "@/components/ColumnNameDeal";
 import SquareMeterIcon from "@/components/SquareMeterIcon";
 import Badge from "@/components/ui/Badge";
 import { formatCurrency } from "@/lib/utils";
+import { deals } from "@/lib/deal-faker";
 
 //styles
 const classes = {
@@ -12,8 +14,22 @@ const classes = {
     label: `text-base`,
 };
 
+// Deal interface
+interface Deal {
+    id: number;
+    address: string;
+    price: number;
+    city: string;
+    state: string;
+    zipCode: string;
+    dateTime: string;
+    imageUrl: string;
+    roomArea: number;
+    status: string;
+}
+
 // Example data and columns configuration
-const columns: Column[] = [
+const columns: Column<Deal>[] = [
     {
         key: "id",
         label: "ID",
@@ -25,7 +41,7 @@ const columns: Column[] = [
         label: "Name",
         sortable: true,
         type: "image",
-        component: (row) => (
+        component: (row: Deal) => (
             <ColumnNameDeal
                 image={row.imageUrl}
                 description={`${row.address}, ${row.city}, ${row.state} ${row.zipCode}`}
@@ -37,7 +53,7 @@ const columns: Column[] = [
         label: "Area",
         sortable: true,
         type: "number",
-        component: (row) => (
+        component: (row: Deal) => (
             <div className={classes.roomArea}>
                 <span className={classes.label}>{row.roomArea}</span>
                 <SquareMeterIcon fill="black" />
@@ -54,7 +70,7 @@ const columns: Column[] = [
         label: "Price",
         sortable: true,
         type: "number",
-        component: (row) => (
+        component: (row: Deal) => (
             <span className={classes.label}>{formatCurrency(row.price)}</span>
         ),
     },
@@ -75,260 +91,28 @@ const columns: Column[] = [
     },
 ];
 
-// recent deals example
-const recentDeals = [
-    {
-        id: 1,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 2,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 3,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 4,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 5,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 6,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 7,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 8,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 9,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 10,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 11,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 12,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 13,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 14,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 15,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 16,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 17,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "CLOSED",
-    },
-    {
-        id: 18,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-    {
-        id: 19,
-        address: "319 Haul Road",
-        price: 5750,
-        city: "Glenrock",
-        state: "OH",
-        zipCode: "44114",
-        dateTime: "Nov 14, 07:00 AM",
-        imageUrl: "https://placehold.co/44x44",
-        roomArea: 350,
-        status: "IN PROGRESS",
-    },
-];
-
 const Deals: React.FC = () => {
-    const handleSort = (sorts: any[]) => {
+    const handleSort = (sorts: Sort[]) => {
         console.log("Sorting:", sorts);
         // Implement your sorting logic here
     };
 
-    const handleFilter = (filters: any[]) => {
+    const handleFilter = (filters: Filter[]) => {
         console.log("Filters:", filters);
         // Implement your filtering logic here
     };
 
-    const handleView = (row: any) => {
+    const handleView = (row: Deal) => {
         console.log("Viewing:", row);
         // Implement view logic
     };
 
-    const handleEdit = (row: any) => {
+    const handleEdit = (row: Deal) => {
         console.log("Editing:", row);
         // Implement edit logic
     };
 
-    const handleDelete = (row: any) => {
+    const handleDelete = (row: Deal) => {
         console.log("Deleting:", row);
         // Example: Remove the user from the data array
     };
@@ -338,11 +122,13 @@ const Deals: React.FC = () => {
         // Implement create logic
     };
 
+    console.log(deals);
+
     return (
         <section className={classes.container}>
-            <h1 className={classes.title}>User Management</h1>
+            <h1 className={classes.title}>List of the deals</h1>
             <DataTable
-                data={recentDeals}
+                data={deals}
                 columns={columns}
                 itemsPerPage={10}
                 onSort={handleSort}
