@@ -92,8 +92,6 @@ const Tasks: React.FC = () => {
         // Implement create logic
     };
 
-    console.log("Tasks:", tasks);
-
     return (
         <section className={classes.container}>
             <h1 className={classes.title}>Task of list</h1>

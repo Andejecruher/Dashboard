@@ -29,6 +29,7 @@ import {
     Trash2,
     Image,
     Folder,
+    LayoutList
 } from "lucide-react";
 
 // Column type
@@ -121,7 +122,8 @@ const classes = {
     iconEdit: `h-5 w-5 text-green`,
     iconDelete: `h-5 w-5 text-red-600`,
     tableNotFound: `px-4 py-8 text-center text-sm text-muted-foreground`,
-    notFound: `text-xl text-gray-400`,
+    notFound: `text-xl text-gray-400 flex items-center justify-center gap-2`,
+    iconNotFound: `w-5 h-5 text-gray-400`,
     footer: `flex items-center justify-between mt-4`,
     footerInfo: `text-base text-muted-foreground`,
     pagination: `flex items-center gap-2`,
@@ -582,10 +584,12 @@ const DataTable: React.FC<DataTableProps> = ({
                             {currentData.length === 0 && (
                                 <tr>
                                     <td
-                                        colSpan={columns.length}
+                                        colSpan={(columns.length || 1) + 1}
                                         className={classes.tableNotFound}
                                     >
-                                        <span className={classes.notFound}>No data found</span>
+                                        <span className={classes.notFound}>
+                                            <LayoutList className={classes.iconNotFound} /> No data found
+                                        </span>
                                     </td>
                                 </tr>
                             )}
