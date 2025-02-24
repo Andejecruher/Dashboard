@@ -89,7 +89,7 @@ const classes = {
     container: `w-full space-y-4`,
     header: `flex items-center justify-between gap-4`,
     headerContent: `flex items-center gap-4`,
-    inputSearch: `border-1 border-grey-300 h-[45px]`,
+    inputSearch: `border-1 border-grey-300 h-[47px]`,
     buttonAdd: `rounded-md`,
     iconAdd: `h-4 w-4 mr-2`,
     filtresContainer: `flex items-center gap-2 z-2`,
@@ -501,17 +501,15 @@ const DataTable: React.FC<DataTableProps> = ({
                         <tbody>
                             {currentData.map((row, index) => (
                                 <tr
-                                    key={index}
+                                    key={row.id || index}
                                     className={classes.tableTr}
                                 >
-                                    {columns.map((column) => (
-                                        column.component ? (
-                                            <td className={classes.tableThRow}>
-                                                {column.component(row)}
-                                            </td>
-                                        ) : (
-                                            <td className={classes.tableThRow}>
-                                                {column.type === "image" ? (
+                                    {columns.map((column, colIndex) => (
+                                        <td key={`${row.id || index}-${colIndex}`} className={classes.tableThRow}>
+                                            {column.component ? (
+                                                column.component(row)
+                                            ) : (
+                                                column.type === "image" ? (
                                                     <img
                                                         src={row[column.key]}
                                                         alt={row[column.key]}
@@ -530,9 +528,9 @@ const DataTable: React.FC<DataTableProps> = ({
                                                     row[column.key]
                                                 ) : (
                                                     row[column.key]
-                                                )}
-                                            </td>
-                                        )
+                                                )
+                                            )}
+                                        </td>
                                     ))}
                                     {/* Row Actions */}
                                     {(actions?.onView ||
@@ -582,7 +580,7 @@ const DataTable: React.FC<DataTableProps> = ({
                                 </tr>
                             ))}
                             {currentData.length === 0 && (
-                                <tr>
+                                <tr key={"no-data"}>
                                     <td
                                         colSpan={(columns.length || 1) + 1}
                                         className={classes.tableNotFound}
